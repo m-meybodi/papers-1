@@ -1,0 +1,142 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>QuickSearch Abstract Format</title><SCRIPT LANGUAGE="Javascript" SRC="/engresources/js/StylesheetLinks.js"></SCRIPT><SCRIPT LANGUAGE="Javascript" SRC="/engresources/lindaHall.js"></SCRIPT>
+<xsl:comment>
+<script language="javascript">
+function printFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//window.alert(docidstring+handlestring);
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=printAbstractSelectedRecords&searchid="+searchid+"&database="+database+"&displayformat=abstract"+docidstring+handlestring;
+new_window = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+// THIS FUNCTION BASICALLY CONSTRUCT ALL THE REQUIRED PARAMETERS FOR EMAIL.THE VALUES SO CONSTRUCTED ARE SENT TO
+//EMAIL FORM.(emailSelectedRecords,emailSelectedFormatResults.jsp)
+function emailFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//window.alert(docidstring+handlestring);
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=emailForm&searchid="+searchid+"&database="+database+"&displayformat=abstract&absfullselected=true"+docidstring+handlestring;
+new_window=window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+function downloadFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=downloadform&searchid="+searchid+"&database="+database+"&displayformat=abstract&absfullselected=true"+docidstring+handlestring;
+new_window = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+//Script for saved records format
+function savedrecordsFormat(sessionid,searchtype,searchid,database,databaseid,displayformat,source)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+var cbcheckvalue= false;
+if(document.quicksearchresultsform.cbresult.checked)
+{
+cbcheckvalue = true;
+}
+// jam 10/4/2002
+// bug - single view of document can be 'Saved to Folder'
+// regardless of whether or not the document is selected (in basket)
+//if(cbcheckvalue)
+//{
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//}
+if(displayformat == 'addrecord')
+{
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=viewSavedFolders&databaseid="+databaseid+docidstring+"&database="+database;
+}
+else
+{
+url="/controller/servlet/Controller?EISESSION="+sessionid+"&CID=personalLoginForm&displaylogin=true&displayform=addrecords&database="+database+"&databaseid="+databaseid+"&source="+source+docidstring;
+}
+NewWindow = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+NewWindow.focus();
+}
+// This function called when you want to add the document to the selected set and when
+// you want to delete the document from the selected set.In this two
+// functions will be performed based on checkbox checked value.If the checked value is true
+// the document will add to the selected set otherwise the document will be removed from
+// the selected set.
+function selectUnselectRecord(cbno,handle,docid,searchquery,database,sessionid,searchid)
+{
+var now = new Date() ;
+var milli = now.getTime() ;
+var img = new Image() ;
+var cbcheck = document.quicksearchresultsform.cbresult.checked;
+if(cbcheck)
+{
+document.images['image_basket'].src="/engresources/Basket.jsp?select=mark&handle="+handle+"&docid="+docid+"&database="+escape(database)+"&sessionid="+sessionid+"&searchquery="+escape(searchquery)+"&searchid="+searchid+"&timestamp="+ milli;
+} else {
+document.images['image_basket'].src="/engresources/Basket.jsp?select=unmark&handle="+handle+"&docid="+docid+"&database="+escape(database)+"&sessionid="+sessionid+"&searchquery="+escape(searchquery)+"&searchid="+searchid+"&timestamp="+ milli ;
+}
+}

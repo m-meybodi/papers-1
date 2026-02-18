@@ -1,0 +1,416 @@
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<html xmlns:date="http://exslt.org/dates-and-times">
+<head>
+<meta CONTENT="en-US" HTTP-EQUIV="Content-Language"/>
+<meta content="text/html; charset=iso-8859-1" HTTP-EQUIV="Content-Type"/>
+<meta content="en" name="DC.language"/>
+<link href=" http://dublincore.org/documents/dces/" rel="schema.DC"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://csdl.computer.org/rss/icis.xml"/>
+<meta content="IEEE Computer Society" name="DC.publisher"/>
+<meta content="text" name="DC.type"/>
+<meta content="text/html" name="DC.format"/>
+<title>A Hybrid Method for Solving Traveling Salesman Problem</title>
+<meta name="DC.title" content="A Hybrid Method for Solving Traveling Salesman Problem"/>
+<meta name="DC.description" content="One of the important problems in graphs theory is&#10;TSP. Both learning automata and genetic algorithms&#10;are search tools which are used for solving many NPComplete&#10;problems. In this paper a hybrid algorithm is&#10;proposed to solve TSP. This algorithm uses both GA&#10;and LA simultaneously to search in state space. It has&#10;been shown that the speed of reaching to answer&#10;increases remarkably using LA and GA simultaneously&#10;in search process, and it also prevents algorithm from&#10;being trapped in local minimums. Experimental results&#10;show the superiority of hybrid algorithm over LA and&#10;GA."/>
+<meta name="description" content="One of the important problems in graphs theory is&#10;TSP. Both learning automata and genetic algorithms&#10;are search tools which are used for solving many NPComplete&#10;problems. In this paper a hybrid algorithm is&#10;proposed to solve TSP. This algorithm uses both GA&#10;and LA simultaneously to search in state space. It has&#10;been shown that the speed of reaching to answer&#10;increases remarkably using LA and GA simultaneously&#10;in search process, and it also prevents algorithm from&#10;being trapped in local minimums. Experimental results&#10;show the superiority of hybrid algorithm over LA and&#10;GA."/>
+<meta content="2007-7" name="DC.date"/>
+<meta content="icis" name="DC.relation.ispartof"/>
+<meta content="http://csdl.computer.org/icis2007/2841toc.htm" name="DC.source"/>
+<meta name="DC.subject" content=""/>
+<meta name="keywords" content=""/>
+<meta name="DC.creator" content="Bager Zarei"/>
+<meta name="pages" content="394-399"/>
+<meta scheme="DOI" name="DC.identifier" content="10.1109/ICIS.2007.24"/>
+<meta content="0-7695-2841-4" scheme="ISBN" name="DC.identifier"/>
+<meta content="2007925756" scheme="LCCN" name="DC.identifier"/>
+<meta content="2841" scheme="Catalog.No" name="DC.identifier"/>
+<meta content="icis" scheme="acronym" name="DC.identifier"/>
+					
+						<script language="JavaScript" type="text/JavaScript">
+							function openBrWindow(theURL,genre,jtitle,jissn,jisbn,jvol,year,jissue,atitle,pageno,aDOI,fname,lname,winName,features) { //v2.0
+							  window.open(theURL+'genre='+genre+'\&jtitle='+jtitle+'\&issn='+jissn+'\&isbn='+jisbn+'\&volume='+jvol+'\&date='+year+'\&issue='+jissue+'\&atitle='+atitle+'\&spage='+pageno+'\&DOI='+aDOI+'\&aufirst='+fname+'\&aulast='+lname,winName,features);
+							}
+							function openRearWindow(theURL,genre,jtitle,jissn,jisbn,jvol,year,jissue,atitle,pageno,aDOI,fname,lname,winName,features) { //v2.0
+							  window.open(theURL+'rfr_id=info:sid/http://ieeecomputersociety.org\&url_ver=Z39.88-2004\&rft_val_fmt=info:ofi/fmt:kev:mtx:journal'+'\&rft.genre='+genre+'\&rft.jtitle='+jtitle+'\&rtf.issn='+jissn+'\&rft.isbn='+jisbn+'\&rft.volume='+jvol+'\&rft.date='+year+'\&rtf.issue'+jissue+'\&rft.atitle='+atitle+'\&rft.spage='+pageno+'\&rft_id=info:doi/'+aDOI+'\&aufirst='+fname+'\&aulast='+lname,winName,features);
+							}
+						</script>
+					
+						<script language=JavaScript src="http://www.computer.org/portal/cms_docs_cs/csdl/js/generalScripts.js" type=text/javascript></script>
+					
+						<script language=JavaScript src="http://www.computer.org/portal/cms_docs_cs/csdl/js/milonic_src.js" type=text/javascript></script>
+					
+						<script language=JavaScript>
+							if(ns4)_d.write("<script language=JavaScript src=http://www.computer.org/portal/cms_docs_cs/csdl/js/mmenuns4.js><\/script>");
+							else _d.write("<script language=JavaScript src=http://www.computer.org/portal/cms_docs_cs/csdl/js/mmenudom.js><\/script>");
+						</script>
+					
+						<script language=JavaScript src="http://www.computer.org/portal/cms_docs_cs/csdl/js/menu_data.js" type=text/javascript></script>
+					
+						<script language="JavaScript" type="text/JavaScript">
+							function sendLink(doiUrl, title) { 
+								var to = ""; 
+								var cc = ""; 
+								var bcc = ""; 
+								var subject = title; 
+								var emailbody = "Here is a link " + doiUrl + " to '" + title + "'"; 
+								var doc = "mailto:" + to + "?cc=" + cc + "&bcc=" + bcc + "&subject=" + escape(subject) + "&body=" + escape(emailbody); 
+								window.location = doc; 
+							}
+
+							function submitform(status) { 
+								if (status=="login") {
+									var url = document.formLogin.action;
+									var parms = escape(document.formLogin.PERSAGENLocation.value);
+									var attributes = "alwaysRaised=yes, screenX=100,left=100,screenY=100,top=100, width=280, height=250, resizable=no, titlebar=no, status=yes";
+									var title = "Login";
+									var loginWindow = window.open(url + "?location=" + parms, title, attributes);
+									loginWindow.focus();
+								} else if (status=="logout") {
+									document.formLogout.submit();
+								}
+							}
+							
+							function enterSearch(e) {
+								if (!e) e = window.event;
+								if (e.type == 'keypress' && e.keyCode != '13') {
+									// enter-key executes search
+									return;
+								}
+								checkSearch();
+							}
+								
+							function checkSearch() {
+								if ((document.searchForm.queryText1.value=="") ||
+									(document.searchForm.queryText1.value == "Enter Search Query")) {
+									alert("Please Enter Some Search Text");
+									return false;
+								}	
+								else {
+									document.searchForm.go_search.value = "Searching...";
+									document.searchForm.go_search.disabled = true;
+									document.searchForm.submit();	
+								}
+							}
+							
+							function getSearchFocus() {
+								if (document.searchForm.queryText1.value == "Enter Search Query")
+									document.searchForm.queryText1.value = "";
+								document.searchForm.queryText1.onkeypress = enterSearch;
+							}
+						
+							function looseSearchFocus() {
+								if (document.searchForm.queryText1.value == "")
+									document.searchForm.queryText1.value = "Enter Search Query";
+								document.searchForm.queryText1.onkeypress = null;
+							}
+						</script>
+					
+				
+<link type="text/css" href="http://www.computer.org/portal/cms_docs_cs/csdl/port_includes/csdl_stylesheet_2006.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="logoheader">
+<div style="padding: 0px; margin: 0px" id="searchbarhead">
+<div style="padding: 3px 10px 0px 0px;">
+<form action="http://search3.computer.org/search/results" method="get" name="searchForm">
+<table align="right" cellpadding="0" cellspacing="0" border="0">
+<tbody>
+<tr>
+<td align="left" valign="top">
+<input onblur="looseSearchFocus();" onfocus="getSearchFocus();" maxLength="256" size="30" value="Enter Search Query" type="text" name="queryText1"/>
+<input style="width: 80px;" onclick="return checkSearch();" value="Search" type="button" name="go_search"/>
+</td>
+<td style=" font-size: 8pt;" align="center" valign="middle">
+<a href="http://search3.computer.org/search/advancedSearch.jsp">
+<em>Advanced Search</em>
+</a>
+</td>
+</tr>
+<tr>
+<td style="font-size: 7pt; color: white;" colspan="2" valign="top" align="left">
+<input type="radio" checked="checked" value="false" name="google"/>CS Search
+												<input type="radio" value="true" name="google"/>Google Search
+											</td>
+</tr>
+</tbody>
+</table>
+<input value="simplesearch" name="action" type="hidden"/>
+<input value="0" name="docid" type="hidden"/>
+<input value="0" name="reference" type="hidden"/>
+<input value="0" name="operation" type="hidden"/>
+<input value="0" name="operation" type="hidden"/>
+<input value="" name="flag" type="hidden"/>
+<input value="2007" name="yearTo" type="hidden"/>
+<input value="1960" name="yearFrom" type="hidden"/>
+<input value="12" name="monthTo" type="hidden"/>
+<input value="01" name="monthFrom" type="hidden"/>
+<input value="DocWeight" name="sortField" type="hidden"/>
+<input value="descending" name="sortOrder" type="hidden"/>
+<input value="yes" name="checkAbstract" type="hidden"/>
+<input value="3" name="searchPubs" type="hidden"/>
+<input value="fullText" name="queryOption1" type="hidden"/>
+<input value="10" name="resultsPerPage" type="hidden"/>
+<input value="2006" name="yearTo" type="hidden"/>
+<input value="1870" name="yearFrom" type="hidden"/>
+<input value="12" name="monthTo" type="hidden"/>
+<input value="01" name="monthFrom" type="hidden"/>
+<input value="DocWeight" name="sortField" type="hidden"/>
+<input value="d" name="sortOrder" type="hidden"/>
+<input value="dlearning+annals+cise+computer+cga+concurrency+dt+intelligent+internet+itpro+micro+multimedia+software+pc+Security+tc+tkde+tpds+tpami+tse+tvcg+tmc+tcbb+tdsc+dsonline+proceedings+acm+cal" name="searchDatabases" type="hidden"/>
+</form>
+</div>
+<a href="http://www.computer.org/portal/site/ieeecs/">
+<img height="47" width="275" src="http://www.computer.org/portal/cms_docs_ieeecs/ieeecs/images/spacer.gif"/>
+</a>
+</div>
+</div>
+<div id="headernav">
+<table>
+<tr>
+<td>
+<ul>
+<li>
+<a href="http://www.computer.org">Home</a>
+</li>
+<li>
+<a href="http://www.computer.org/portal/site/csdl/index.jsp">Digital Library</a>
+</li>
+<li>
+<a href="http://www.computer.org/portal/pages/ieeecs/content/sitemap.html">Site Map</a>
+</li>
+<li>
+<a href="http://www.computer.org/portal/site/store/index.jsp">Store</a>
+</li>
+<li>
+<a href="http://www.computer.org/portal/pages/ieeecs/content/contact.html">Contact Us</a>
+</li>
+<li>
+<a href="http://www.computer.org/portal/site/ieeecs/index.jsp?pageID=ieeecs_pressroom">Press Room</a>
+</li>
+<li>
+<a href="https://newton.computer.org/DocDelivery/Shopping.nsf/DisplayCart?OpenAgent">Shopping Cart</a>
+</li>
+<li>
+<a href="http://www.computer.org/portal/pages/ieeecs/content/help.html">Help</a>
+</li>
+<li>
+<a onClick="submitform('login');" href="#">
+<strong>Login</strong>
+</a>
+</li>
+</ul>
+</td>
+<td class="right">
+<a target="_blank" href="http://www.ieee.org">
+<img height="25" width="100" src="http://www.computer.org/portal/cms_docs_ieeecs/ieeecs/images/spacer.gif"/>
+</a>
+</td>
+</tr>
+</table>
+</div>
+<div id="logofield">
+<div class="welcomeTxt">
+<a onClick="submitform('login');" href="#">
+<strong>Subscribers, please login</strong>
+</a>
+<img src="/common/images/spacer.gif" name="spacer"/>
+</div>
+<a href="http://www.computer.org/portal/pages/csdl/content/index.html">
+<img border="0" width="400" src="http://www.computer.org/portal/cms_docs_cs/csdl/images/dl_Logo.gif" name="logo"/>
+</a>
+</div>
+<form id="formLogout" name="formLogout" method="post" action="logout/doLogout.jsp">
+<input type="hidden" name="PERSAGENLocation" value="http://csdl2.computer.org/persagen/DLAbsToc.jsp?resourcePath=/dl/proceedings/&amp;toc=comp/proceedings/icis/2007/2841/00/2841toc.xml&amp;DOI=10.1109/ICIS.2007.24"/>
+</form>
+<form id="formLogin" name="formLogin" method="post" action="https://secure.computer.org/persagen/doLogin.jsp">
+<input type="hidden" name="PERSAGENLocation" value="http://csdl2.computer.org/persagen/DLAbsToc.jsp?resourcePath=/dl/proceedings/&amp;toc=comp/proceedings/icis/2007/2841/00/2841toc.xml&amp;DOI=10.1109/ICIS.2007.24"/>
+</form>
+<div id="maincontent">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="left" valign="top" id="PortalColumn1">
+<div id="container">
+<a name="top"/>
+<table>
+<tr>
+<td align="left" valign="top" id="PortalColumn1">
+<p class="crumb">
+<a href="http://csdl2.computer.org/persagen/DLPublication.jsp?pubtype=p&amp;acronym=icis">Published Articles</a>  &gt;&gt;  <a href="DLAbsToc.jsp?resourcePath=/dl/proceedings/icis/&amp;toc=comp/proceedings/icis/2007/2841/00/2841toc.xml">Table of Contents</a>  &gt;&gt;  <font color="black">Abstract</font>
+</p>
+<p>
+<span class="issueInfo">
+<a href="DLAbsToc.jsp?resourcePath=/dl/proceedings/icis/&amp;toc=comp/proceedings/icis/2007/2841/00/2841toc.xml">6th IEEE/ACIS International Conference on Computer and Information Science (ICIS 2007)</a>
+</span>
+																		 
+																		
+																		
+																		pp. 394-399<br/>
+<span class="title">A Hybrid Method for Solving Traveling Salesman Problem</span>
+<br/>
+<span class="articleauthor">
+<a href="http://search2.computer.org/advanced/Author_Result.jsp?qtype=3&amp;select=50&amp;qOpt1=DC_CREATOR&amp;sortOrder=d&amp;queryName=Bager Zarei">Bager Zarei</a>,  Islamic Azad University, Iran<br/>
+<a href="http://search2.computer.org/advanced/Author_Result.jsp?qtype=3&amp;select=50&amp;qOpt1=DC_CREATOR&amp;sortOrder=d&amp;queryName=M. R. Meybodi">M. R. Meybodi</a>,  Amirkabir University, Iran<br/>
+<a href="http://search2.computer.org/advanced/Author_Result.jsp?qtype=3&amp;select=50&amp;qOpt1=DC_CREATOR&amp;sortOrder=d&amp;queryName=Mortaza Abbaszadeh">Mortaza Abbaszadeh</a>, Islamic Azad University, Iran<br/>
+</span>
+<br/>
+																			Full Article Text: 	
+																				<img align="absMiddle" class="hspace" border="0" alt="Download PDF of full text" height="18" width="40" src="/common/images/pdf_icon_gray.gif"/>
+<a href="https://newton.computer.org/DocDelivery/Shopping.nsf/AddToCart?OpenAgent&amp;U=http://csdl.computer.org/dl/proceedings/icis/2007/2841/00/284100394.pdf&amp;T=A Hybrid Method for Solving Traveling Salesman Problem">
+<img align="absmiddle" class="hspace" alt="Buy this article" src="/common/images/buy_icon19.jpg"/>
+</a>
+<br/>
+</p>
+<p>
+<strong>DOI Bookmark: </strong>
+<a href="http://doi.ieeecomputersociety.org/10.1109/ICIS.2007.24">http://doi.ieeecomputersociety.org/10.1109/ICIS.2007.24</a>
+<br/>
+<a href="#" onclick="javascript:sendLink('http://doi.ieeecomputersociety.org/10.1109/ICIS.2007.24','A Hybrid Method for Solving Traveling Salesman Problem')">
+       																			     Send link to a friend
+       																			 </a>
+</p>
+<table>
+<tr>
+<th>Abstract</th>
+</tr>
+<tr>
+<td>
+<ABSTRACTL xmlns:sql="urn:schemas-microsoft-com:xml-sql">One of the important problems in graphs theory is
+TSP. Both learning automata and genetic algorithms
+are search tools which are used for solving many NPComplete
+problems. In this paper a hybrid algorithm is
+proposed to solve TSP. This algorithm uses both GA
+and LA simultaneously to search in state space. It has
+been shown that the speed of reaching to answer
+increases remarkably using LA and GA simultaneously
+in search process, and it also prevents algorithm from
+being trapped in local minimums. Experimental results
+show the superiority of hybrid algorithm over LA and
+GA.</ABSTRACTL>
+</td>
+</tr>
+<tr>
+<tr>
+<th id="additionalInfo">
+<div id="aboutref">
+<a href="#top">Back to Top</a>
+</div>
+<img align="absmiddle" height="16" width="16" src="/common/images/info_icon.gif"/> Additional Information
+																				</th>
+</tr>
+<td>
+<p>
+<strong>Citation:</strong> 
+																					Bager Zarei, M. R. Meybodi, Mortaza Abbaszadeh, 					
+																						"A Hybrid Method for Solving Traveling Salesman Problem,"
+																						<i>icis</i>,
+																						pp. 394-399, 
+																						6th IEEE/ACIS International Conference on Computer and Information Science (ICIS 2007), 
+																					2007</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td align="left" valign="top" id="PortalColumn2">
+<div align="left">
+<br/>
+<p>
+<span>
+<a href="http://search3.computer.org/search/results?operation=morelikethisreference&amp;reference=http://csdl.computer.org/dl/proceedings/icis/2007/2841/00/284100394.pdf&amp;resultsPerPage=10&amp;queryoption1=fulltext&amp;sortField=DocWeight&amp;checkAbstract=yes&amp;searchDatabases=dlearning+annals+cise+computer+cga+concurrency+dt+intelligent+internet+itpro+micro+multimedia+software+pc+Security+tc+tkde+tpds+tpami+tse+tvcg+tmc+tcbb+tdsc+dsonline+proceedings+acm+cal&amp;yearTo=2007&amp;monthTo=12&amp;yearFrom=1870&amp;monthFrom=01&amp;sortOrder=ascending">
+																Similar Articles
+															 </a>
+</span>
+</p>
+<p class="hilite">
+<b>Abstract Contents</b>
+<br/>
+<a href="#abstract">Abstract</a>
+<br/>
+<a href="#additionalInfo">Citation</a>
+<br/>
+</p>
+<div class="hilite">
+<b>Download Citation</b>
+<br/>
+<A href="javascript:Popup=window.open('','IntlPopup','alwaysRaised=1,dependent=1,height=500,location=0,menubar=1,personalbar=0,scrollbars=0,status=0,toolbar=0,width=750,resizable=0');Popup.focus();Popup.document.write('Bager Zarei, M. R. Meybodi, Mortaza Abbaszadeh, &quot;A Hybrid Method for Solving Traveling Salesman Problem,&quot;&amp;nbsp;&lt;i&gt;icis&lt;/i&gt;&amp;nbsp;,&amp;nbsp;pp. 394-399,&amp;nbsp;2007.&lt;br/&gt;');Popup.document.close();">Ascii Text</A>
+<br/>
+<A href="javascript:Popup=window.open('','IntlPopup','alwaysRaised=1,dependent=1,height=500,location=0,menubar=1,personalbar=0,scrollbars=0,status=0,toolbar=0,width=750,resizable=0');Popup.focus();Popup.document.write('@article{10.1109/ICIS.2007.24,&lt;br/&gt;author&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{Bager Zarei and M. R. Meybodi and Mortaza Abbaszadeh},&lt;br/&gt;title&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{A Hybrid Method for Solving Traveling Salesman Problem},&lt;br/&gt;journal&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{icis},&lt;br/&gt;volume&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{0},&#10;&lt;br/&gt;&#10;year&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{2007},&lt;br/&gt;isbn&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{0-7695-2841-4},	&lt;br/&gt;pages&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{394-399},&lt;br/&gt;doi&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{http://doi.ieeecomputersociety.org/10.1109/ICIS.2007.24},&#10;&lt;br/&gt;publisher&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{IEEE Computer Society},&lt;br/&gt;address&lt;xsl:text&gt;&amp;nbsp;=&amp;nbsp;&lt;/xsl:text&gt;{Los Alamitos, CA, USA},&lt;br/&gt;}');Popup.document.close();">BibTex</A>
+<br/>
+<A href="javascript:Popup=window.open('','IntlPopup','alwaysRaised=1,dependent=1,height=500,location=0,menubar=1,personalbar=0,scrollbars=0,status=0,toolbar=0,width=750,resizable=0');Popup.focus();Popup.document.write('TY&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- CONF&lt;br/&gt;JO&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- icis&lt;br/&gt;TI&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- A Hybrid Method for Solving Traveling Salesman Problem&lt;br/&gt;SN&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- 0-7695-2841-4&lt;br/&gt;SP&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- 394&lt;br/&gt;A1&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- Bager Zarei&lt;br/&gt;A1&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- M. R. Meybodi&lt;br/&gt;A1&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- Mortaza Abbaszadeh&lt;br/&gt;PY&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- 2007&lt;br/&gt;VL&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- 0&lt;br/&gt;JA&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;- icis&lt;br/&gt;ER&lt;xsl:text&gt;&amp;nbsp;&amp;nbsp;&lt;/xsl:text&gt;-  '); Popup.document.close();">RefWorks<br/>Procite/RefMan/Endnote</A>
+<br/>
+</div>
+<br/>
+<div class="hilite">
+<p>
+<strong>Free access to</strong>
+</p>
+<ul>
+<li> Abstracts </li>
+<li> Selected PDFs </li>
+</ul>
+<p>Electronic subscribers
+														 <a onClick="submitform('login');" href="#">
+<strong> login </strong>
+</a> to:
+														
+													</p>
+<ul>
+<li> Access HTML/PDFs of full text articles</li>
+</ul>
+<p>
+<a href="http://www.computer.org/subscribe/">Subscription information</a>
+<br/>
+</p>
+<p>
+<a href="http://www.computer.org/WebAccounts/index.htm">Get a Web account</a>
+</p>
+</div>
+<p>
+<a href="http://www.computer.org/portal/pages/csdl/content/peer_review.html">Peer Review Notice</a>
+</p>
+<p>
+<a href="http://bell.computer.org/dlcomments/">Give us Feedback</a>
+</p>
+<p class="normal"> </p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="footer">
+<table>
+<tr>
+<td>
+<p>Usage of this product signifies your acceptance of the <a href="http://www.computer.org/portal/pages/csdl/content/Terms.html">Terms of Use.</a>
+</p>
+<p>This site and all contents (unless otherwise noted) are Copyright © 2007, IEEE, Inc. All rights reserved.</p>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,451 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0209)http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchAbstractFormat&SEARCHID=f102d310efd2182d2M3377prod3data1&DOCINDEX=69&PAGEINDEX=51&database=49155&format=quickSearchAbstractFormat --><HTML><HEAD><TITLE>QuickSearch Abstract Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<SCRIPT language=Javascript 
+src="QuickSearch Abstract Format------_files/StylesheetLinks.js"></SCRIPT>
+
+<SCRIPT language=Javascript 
+src="QuickSearch Abstract Format------_files/lindaHall.js"></SCRIPT>
+<XSL:COMMENT>
+<SCRIPT language=javascript>
+function printFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//window.alert(docidstring+handlestring);
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=printAbstractSelectedRecords&searchid="+searchid+"&database="+database+"&displayformat=abstract"+docidstring+handlestring;
+new_window = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+// THIS FUNCTION BASICALLY CONSTRUCT ALL THE REQUIRED PARAMETERS FOR EMAIL.THE VALUES SO CONSTRUCTED ARE SENT TO
+//EMAIL FORM.(emailSelectedRecords,emailSelectedFormatResults.jsp)
+function emailFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//window.alert(docidstring+handlestring);
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=emailForm&searchid="+searchid+"&database="+database+"&displayformat=abstract&absfullselected=true"+docidstring+handlestring;
+new_window=window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+function downloadFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=downloadform&searchid="+searchid+"&database="+database+"&displayformat=abstract&absfullselected=true"+docidstring+handlestring;
+new_window = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+//Script for saved records format
+function savedrecordsFormat(sessionid,searchtype,searchid,database,databaseid,displayformat,source)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+var cbcheckvalue= false;
+if(document.quicksearchresultsform.cbresult.checked)
+{
+cbcheckvalue = true;
+}
+// jam 10/4/2002
+// bug - single view of document can be 'Saved to Folder'
+// regardless of whether or not the document is selected (in basket)
+//if(cbcheckvalue)
+//{
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//}
+if(displayformat == 'addrecord')
+{
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=viewSavedFolders&databaseid="+databaseid+docidstring+"&database="+database;
+}
+else
+{
+url="/controller/servlet/Controller?EISESSION="+sessionid+"&CID=personalLoginForm&displaylogin=true&displayform=addrecords&database="+database+"&databaseid="+databaseid+"&source="+source+docidstring;
+}
+NewWindow = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+NewWindow.focus();
+}
+// This function called when you want to add the document to the selected set and when
+// you want to delete the document from the selected set.In this two
+// functions will be performed based on checkbox checked value.If the checked value is true
+// the document will add to the selected set otherwise the document will be removed from
+// the selected set.
+function selectUnselectRecord(cbno,handle,docid,searchquery,database,sessionid,searchid)
+{
+var now = new Date() ;
+var milli = now.getTime() ;
+var img = new Image() ;
+var cbcheck = document.quicksearchresultsform.cbresult.checked;
+if(cbcheck)
+{
+document.images['image_basket'].src="/engresources/Basket.jsp?select=mark&handle="+handle+"&docid="+docid+"&database="+escape(database)+"&sessionid="+sessionid+"&searchquery="+escape(searchquery)+"&searchid="+searchid+"&timestamp="+ milli;
+} else {
+document.images['image_basket'].src="/engresources/Basket.jsp?select=unmark&handle="+handle+"&docid="+docid+"&database="+escape(database)+"&sessionid="+sessionid+"&searchquery="+escape(searchquery)+"&searchid="+searchid+"&timestamp="+ milli ;
+}
+}
+</SCRIPT>
+</XSL:COMMENT>
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff topMargin=0 marginheight="0" marginwidth="0">
+<TABLE cellSpacing=0 cellPadding=0 width="99%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top><A 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=home" 
+            target=_top><IMG 
+            src="QuickSearch Abstract Format------_files/ev2logo5.gif" 
+            border=0></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=center align=right target="_top"><A class=DecLink 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=viewCompleteSearchHistory&amp;COUNT=69&amp;SEARCHID=f102d310efd2182d2M3377prod3data1&amp;database=49155&amp;SEARCHTYPE=Quick&amp;searchResultsFormat=quickSearchCitationFormat" 
+      target=_top>Search History</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+      class=DecLink 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=citationSelectedSet&amp;SEARCHID=f102d310efd2182d2M3377prod3data1&amp;COUNT=69&amp;SEARCHTYPE=Quick&amp;DATABASETYPE=49155&amp;DATABASEID=" 
+      target=_top>Selected Records</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+      class=DecLink 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=myprofile&amp;searchid=f102d310efd2182d2M3377prod3data1&amp;searchtype=Quick&amp;count=69&amp;database=49155" 
+      target=_top>My Profile</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+      class=DecLink 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=personalLoginForm&amp;searchid=f102d310efd2182d2M3377prod3data1&amp;searchtype=Quick&amp;count=69&amp;displaylogin=true&amp;database=49155&amp;nexturl=CID%3DviewSavedSearches%26database%3D49155%26show%3Dalerts" 
+      target=_top>My Alerts</A></TD>
+    <TD vAlign=center align=right><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=endSession&amp;SYSTEM_LOGOUT=true" 
+      target=_top><IMG alt="End Session" 
+      src="QuickSearch Abstract Format------_files/endsession.gif" 
+    border=0></A></TD></TR></TBODY></TABLE>
+<CENTER>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=0 width="99%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=1 bgColor=#ffffff><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" width=1 border=0></TD>
+    <TD vAlign=top width="100%"><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" border=0></TD>
+    <TD vAlign=bottom width=2><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" width=2 border=0></TD>
+    <TD vAlign=bottom align=right><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=easySearch&amp;database=49155" 
+      target=_self><IMG alt="Easy Search" 
+      src="QuickSearch Abstract Format------_files/simple_b.gif" 
+border=0></A></TD>
+    <TD vAlign=bottom width=2><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" width=2 border=0></TD>
+    <TD vAlign=bottom align=right><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearch&amp;database=49155" 
+      target=_self><IMG alt="Quick Search" 
+      src="QuickSearch Abstract Format------_files/advanced_g.gif" 
+    border=0></A></TD>
+    <TD vAlign=bottom width=2><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" width=2 border=0></TD>
+    <TD vAlign=bottom align=right><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=expertSearch&amp;database=49155" 
+      target=_self><IMG alt="Expert Search" 
+      src="QuickSearch Abstract Format------_files/expert_b.gif" 
+border=0></A></TD>
+    <TD vAlign=bottom width=2><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" width=2 border=0></TD>
+    <TD vAlign=bottom align=right><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=thesHome&amp;database=49155" 
+      target=_self><IMG alt=Thesaurus 
+      src="QuickSearch Abstract Format------_files/thes_b.gif" border=0></A></TD>
+    <TD vAlign=bottom width=2><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" width=2 border=0></TD>
+    <TD vAlign=bottom align=right><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=keyWordSearch" 
+      target=_self><IMG alt="eBook Search" 
+      src="QuickSearch Abstract Format------_files/ebook_b.gif" border=0></A></TD>
+    <TD vAlign=bottom width=2><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" width=2 border=0></TD>
+    <TD vAlign=bottom align=right><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=referenceServices&amp;database=49155" 
+      target=_self><IMG alt="Ask an Expert" 
+      src="QuickSearch Abstract Format------_files/ask_b.gif" border=0></A></TD>
+    <TD vAlign=bottom width=2><IMG 
+      src="QuickSearch Abstract Format------_files/s.gif" width=2 border=0></TD>
+    <TD vAlign=bottom align=right><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=help&amp;database=49155" 
+      target=_self><IMG alt=Help 
+      src="QuickSearch Abstract Format------_files/help_b.gif" 
+  border=0></A></TD></TR></TBODY></TABLE></CENTER>
+<CENTER xmlns:html="http://www.w3.org/TR/REC-html40">
+<TABLE cellSpacing=0 cellPadding=0 width="99%" bgColor=#c3c8d1 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=center align=left height=24><IMG height=1 
+      src="QuickSearch Abstract Format------_files/s.gif" width=8 border=0><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;SEARCHID=f102d310efd2182d2M3377prod3data1&amp;COUNT=51&amp;database=49155"><IMG 
+      height=16 src="QuickSearch Abstract Format------_files/sr.gif" 
+      border=0></A><IMG height=1 
+      src="QuickSearch Abstract Format------_files/s.gif" width=8 border=0><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearch&amp;database=49155"><IMG 
+      height=16 src="QuickSearch Abstract Format------_files/ns.gif" 
+      border=0></A></TD>
+    <TD vAlign=center align=right height=24><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchAbstractFormat&amp;SEARCHID=f102d310efd2182d2M3377prod3data1&amp;navigator=PREV&amp;DOCINDEX=68&amp;PAGEINDEX=51&amp;database=49155&amp;format=quickSearchAbstractFormat"><IMG 
+      src="QuickSearch Abstract Format------_files/pp.gif" border=0></A><IMG 
+      height=1 src="QuickSearch Abstract Format------_files/s.gif" width=8 
+      border=0><A 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchAbstractFormat&amp;SEARCHID=f102d310efd2182d2M3377prod3data1&amp;navigator=NEXT&amp;DOCINDEX=70&amp;PAGEINDEX=51&amp;database=49155&amp;format=quickSearchAbstractFormat"><IMG 
+      src="QuickSearch Abstract Format------_files/np.gif" border=0></A><IMG 
+      height=1 src="QuickSearch Abstract Format------_files/s.gif" width=8 
+      border=0></TD></TR></TBODY></TABLE></CENTER>
+<TABLE cellSpacing=0 cellPadding=0 width="99%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top>
+      <CENTER xmlns:ti="java:org.ei.query.base.HitHighlightFinisher">
+      <TABLE cellSpacing=0 cellPadding=0 width="99%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top colSpan=2 height=10><IMG height=10 
+            src="QuickSearch Abstract Format------_files/s.gif" border=0></TD></TR>
+        <TR>
+          <TD vAlign=top>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top><A class=BrownText>Abstract</A><A 
+                  class=MedBlackText>&nbsp; - &nbsp;</A><A class=LgBlueLink 
+                  href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchDetailedFormat&amp;SEARCHID=f102d310efd2182d2M3377prod3data1&amp;DOCINDEX=69&amp;PAGEINDEX=51&amp;database=49155&amp;format=quickSearchDetailedFormat">Detailed</A></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top align=right><A class=MedBlueLink 
+            onclick="javascript:window.open('/controller/servlet/Controller?CID=openBlog&amp;MID=cpx_fabe9fbbb5ea263M5c3319255120119&amp;DATABASE=cpx&amp;TITLE=A+New+Distributed+Learning+Automata+Based+Algorithm+For+Solving+Stochastic+Shortest+Path+Problem')" 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchAbstractFormat&amp;SEARCHID=f102d310efd2182d2M3377prod3data1&amp;DOCINDEX=69&amp;PAGEINDEX=51&amp;database=49155&amp;format=quickSearchAbstractFormat#"><IMG 
+            src="QuickSearch Abstract Format------_files/blog.gif" 
+            border=0></A>&nbsp; &nbsp; <A 
+            href="javascript:%20emailFormat('1_38311810efd20a9bdM16aeses3','Quick','f102d310efd2182d2M3377prod3data1','49155','cpx');void('');"><IMG 
+            src="QuickSearch Abstract Format------_files/em.gif" 
+            border=0></A>&nbsp; &nbsp; <A 
+            href="javascript:printFormat('1_38311810efd20a9bdM16aeses3','Quick','f102d310efd2182d2M3377prod3data1','49155','cpx')"><IMG 
+            src="QuickSearch Abstract Format------_files/pr.gif" 
+            border=0></A>&nbsp; &nbsp; <A 
+            href="javascript:downloadFormat('1_38311810efd20a9bdM16aeses3','Quick','f102d310efd2182d2M3377prod3data1','49155','cpx')"><IMG 
+            src="QuickSearch Abstract Format------_files/dw.gif" 
+            border=0></A>&nbsp; &nbsp; <A 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?EISESSION=1_38311810efd20a9bdM16aeses3&amp;CID=personalLoginForm&amp;searchid=f102d310efd2182d2M3377prod3data1&amp;count=51&amp;searchtype=Quick&amp;displaylogin=true&amp;database=49155&amp;nexturl=CID%3DviewSavedFolders%26docid%3Dcpx_fabe9fbbb5ea263M5c3319255120119%26database%3D49155&amp;backurl=CID%3DquickSearchAbstractFormat%26SEARCHID%3Df102d310efd2182d2M3377prod3data1%26DOCINDEX%3D69%26PAGEINDEX%3D51%26database%3D49155%26format%3DquickSearchAbstractFormat"><IMG 
+            src="QuickSearch Abstract Format------_files/sv.gif" 
+        border=0></A></TD></TR>
+        <TR>
+          <TD vAlign=top colSpan=2><IMG height=10 
+            src="QuickSearch Abstract Format------_files/s.gif" 
+        border=0></TD></TR></TBODY></TABLE></CENTER>
+      <TABLE cellSpacing=0 cellPadding=0 width="99%" border=0>
+        <FORM name=quicksearchresultsform><INPUT type=hidden value=69 
+        name=HANDLE><INPUT type=hidden value=cpx_fabe9fbbb5ea263M5c3319255120119 
+        name=DOC-ID> 
+        <TBODY>
+        <TR>
+          <TD vAlign=top colSpan=5><A class=SmBlueText>Record 69 from 
+            Compendex for: ((meybodi) WN All fields)</A><A class=SmBlueText>, 
+            1790-2007</A></TD></TR>
+        <TR>
+          <TD vAlign=top colSpan=5 height=10><IMG height=10 
+            src="QuickSearch Abstract Format------_files/spacer.gif" 
+        border=0></TD></TR>
+        <TR>
+          <TD vAlign=top colSpan=5><A class=SmBlackText>Check record to add to 
+            Selected Records</A></TD></TR>
+        <TR>
+          <TD vAlign=top colSpan=5 height=6><IMG height=6 
+            src="QuickSearch Abstract Format------_files/spacer.gif" 
+        border=0></TD></TR>
+        <TR>
+          <TD vAlign=top align=right><INPUT 
+            onclick="selectUnselectRecord( 1,69,'cpx_fabe9fbbb5ea263M5c3319255120119','%28%28meybodi%29+WN+All+fields%29','cpx','1_38311810efd20a9bdM16aeses3','f102d310efd2182d2M3377prod3data1')" 
+            type=checkbox name=cbresult></TD>
+          <TD vAlign=top width=3><IMG 
+            src="QuickSearch Abstract Format------_files/spacer.gif" width=3 
+            border=0 name=image_basket></TD>
+          <TD vAlign=top><A class=MedBlackText>69.</A></TD>
+          <TD vAlign=top width=4><IMG 
+            src="QuickSearch Abstract Format------_files/spacer.gif" width=4 
+            border=0></TD>
+          <TD vAlign=top align=left width="100%"><A class=MedBlackText><B>A 
+            New Distributed Learning Automata Based Algorithm For Solving 
+            Stochastic Shortest Path Problem</B></A><BR><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Beigy%2C+Hamid}&amp;section1=AU&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Beigy, 
+            Hamid</A><SPAN class=SmBlackText> (Soft Computing Laboratory, 
+            Computer Engineering Departement, Amirkabir University of 
+            Technology)</SPAN><A class=SmBlackText>;</A> <A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Meybodi%2C+M.R.}&amp;section1=AU&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Meybodi, 
+            M.R.</A> <A class=SmBlackText><B>Source: </B><I>Proceedings of the 
+            Joint Conference on Information Sciences</I>, v 6, <I>Proceedings of 
+            the 6th Joint Conference on Information Sciences, JCIS 2002</I>, 
+            2002, p 339-343<BR><B>ISBN:</B> 0970789017 <BR><B>Conference:</B> 
+            Proceedings of the 6th Joint Conference on Information Sciences, 
+            JCIS 2002, Mar 8-13 2002, Research Triange Park, NC, United States 
+            <B>Sponsor:</B> Association for Intelligent Machinery;Information 
+            Sciences Journal;Duke University;Tamkang University 
+            <BR><B>Publisher:</B> Duke University/Association for Intelligent 
+            Machinery</A> <SPAN class=MedBlackText><A 
+            class=MedBlackText><BR><BR><B>Abstract: </B>A new distributed 
+            learning automata (DLA) based algorithm for solving stochastic 
+            shortest path problem is presented. The objective is to use DLA to 
+            find a policy that determines a path from a source node to a 
+            destination node with minimal expected cost. It has been shown that 
+            the proposed algorithm finds the shortest path in a stochastic graph 
+            with probability as close as to unity.</A></SPAN><A 
+            class=MedBlackText> (11 refs.)</A> <A 
+            class=MedBlackText><BR><BR><B>Ei controlled terms: </B></A><A 
+            class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Learning+systems}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr"><B>Learning 
+            systems</B></A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+            class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Distributed+computer+systems}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Distributed 
+            computer systems</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+            class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Automata+theory}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Automata 
+            theory</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Algorithms}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Algorithms</A><A 
+            class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Probability+density+function}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Probability 
+            density function</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+            class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Graph+theory}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Graph 
+            theory</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Problem+solving}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Problem 
+            solving</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Vectors}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Vectors</A><A 
+            class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Monte+Carlo+methods}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Monte 
+            Carlo methods</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+            class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Mathematical+models}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Mathematical 
+            models</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Computer+simulation}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Computer 
+            simulation</A><A class=MedBlackText><BR><BR><B>Classification Code: 
+            &nbsp;&nbsp;</B></A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={723.4}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">723.4</A><A 
+            class=MedBlackText> Artificial Intelligence</A><A 
+            class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={722.4}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">722.4</A><A 
+            class=MedBlackText> Digital Computers &amp; Systems</A><A 
+            class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={721.1}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">721.1</A><A 
+            class=MedBlackText> Computer Theory, Includes Formal Logic, Automata 
+            Theory, Switching Theory, Programming Theory</A><A 
+            class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={922.1}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">922.1</A><A 
+            class=MedBlackText> Probability Theory</A><A 
+            class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={921.4}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">921.4</A><A 
+            class=MedBlackText> Combinatorial Mathematics, Includes Graph 
+            Theory, Set Theory</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+            class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={921.1}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">921.1</A><A 
+            class=MedBlackText> Algebra</A><A class=SmBlackText>&nbsp; - 
+            &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={922.2}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">922.2</A><A 
+            class=MedBlackText> Mathematical Statistics</A><A 
+            class=SmBlackText>&nbsp; - &nbsp;</A><A class=SpLink 
+            href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={723.5}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">723.5</A><A 
+            class=MedBlackText> Computer Applications</A><BR><BR><A 
+            class=SmBlackText><B>Database:</B> Compendex</A> 
+            <P></P>
+            <SCRIPT language=JavaScript 
+            src="QuickSearch Abstract Format------_files/wz_tooltip.js" 
+            type=text/javascript></SCRIPT>
+          </TD></TR>
+        <TR>
+          <TD vAlign=top colSpan=4 height=15><IMG 
+            src="QuickSearch Abstract Format------_files/spacer.gif" 
+border=0></TD>
+          <TD vAlign=top bgColor=#c3c8d1 height=15><A 
+            class=MedBlackText><B>&nbsp; Full-text and Local Holdings 
+            Links</B></A></TD></TR>
+        <TR>
+          <TD vAlign=top colSpan=5 height=4><IMG height=4 
+            src="QuickSearch Abstract Format------_files/spacer.gif" 
+        border=0></TD></TR>
+        <TR>
+          <TD vAlign=top width=3 colSpan=4><IMG 
+            src="QuickSearch Abstract Format------_files/spacer.gif" width=3 
+            border=0></TD>
+          <TD vAlign=bottom align=left></TD></TR>
+        <TR>
+          <TD vAlign=bottom colSpan=4 height=30><IMG height=30 
+            src="QuickSearch Abstract Format------_files/spacer.gif" 
+        border=0></TD></TR></FORM></TBODY></TABLE></TD></TR></TBODY></TABLE></CENTER><BR>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <CENTER><A class=MedBlueLink 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=aboutEI&amp;database=49155" 
+      target=_self>About Ei</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+      class=MedBlueLink 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=aboutEV&amp;database=49155" 
+      target=_self>About Engineering Village</A><A class=SmBlackText>&nbsp; - 
+      &nbsp;</A><A class=MedBlueLink 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=feedback&amp;database=49155" 
+      target=_self>Feedback</A><A class=SmBlackText>&nbsp; - &nbsp;</A><A 
+      class=MedBlueLink 
+      href="http://www.engineeringvillage2.org/controller/servlet/Controller?CID=privacyPolicy&amp;database=49155" 
+      target=_self>Privacy Policy</A><BR><A class=SmBlackText>© 2006 Elsevier 
+      Inc. All rights reserved.</A></CENTER></TD></TR></TBODY></TABLE><BR><!-- Transform Time:33 --></BODY></HTML>
+

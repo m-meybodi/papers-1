@@ -1,0 +1,153 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>QuickSearch Abstract Format</title><SCRIPT LANGUAGE="Javascript" SRC="/engresources/js/StylesheetLinks.js"></SCRIPT><SCRIPT LANGUAGE="Javascript" SRC="/engresources/lindaHall.js"></SCRIPT>
+<xsl:comment>
+<script language="javascript">
+function printFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//window.alert(docidstring+handlestring);
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=printAbstractSelectedRecords&searchid="+searchid+"&database="+database+"&displayformat=abstract"+docidstring+handlestring;
+new_window = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+// THIS FUNCTION BASICALLY CONSTRUCT ALL THE REQUIRED PARAMETERS FOR EMAIL.THE VALUES SO CONSTRUCTED ARE SENT TO
+//EMAIL FORM.(emailSelectedRecords,emailSelectedFormatResults.jsp)
+function emailFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//window.alert(docidstring+handlestring);
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=emailForm&searchid="+searchid+"&database="+database+"&displayformat=abstract&absfullselected=true"+docidstring+handlestring;
+new_window=window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+function downloadFormat(sessionid,searchtype,searchid,database,databaseid)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=downloadform&searchid="+searchid+"&database="+database+"&displayformat=abstract&absfullselected=true"+docidstring+handlestring;
+new_window = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+new_window.focus();
+}
+//Script for saved records format
+function savedrecordsFormat(sessionid,searchtype,searchid,database,databaseid,displayformat,source)
+{
+var i=0;
+var url = null;
+var docidstring = "&docidlist=";
+var handlestring = "&handlelist=";
+var hiddensize = document.quicksearchresultsform.elements.length;
+var cbcheckvalue= false;
+if(document.quicksearchresultsform.cbresult.checked)
+{
+cbcheckvalue = true;
+}
+// jam 10/4/2002
+// bug - single view of document can be 'Saved to Folder'
+// regardless of whether or not the document is selected (in basket)
+//if(cbcheckvalue)
+//{
+for(var i=0 ; i < hiddensize ; i++)
+{
+var nameOfElement = document.quicksearchresultsform.elements[i].name;
+var valueOfElement = document.quicksearchresultsform.elements[i].value;
+if((nameOfElement.search(/HANDLE/)!=-1) && (valueOfElement != ""))
+{
+handlestring += valueOfElement ;
+}
+if((nameOfElement.search(/DOC-ID/)!=-1) && (valueOfElement != ""))
+{
+docidstring += valueOfElement ;
+}
+}
+//}
+if(displayformat == 'addrecord')
+{
+url= "/controller/servlet/Controller?EISESSION="+sessionid+"&CID=viewSavedFolders&databaseid="+databaseid+docidstring+"&database="+database;
+}
+else
+{
+url="/controller/servlet/Controller?EISESSION="+sessionid+"&CID=personalLoginForm&displaylogin=true&displayform=addrecords&database="+database+"&databaseid="+databaseid+"&source="+source+docidstring;
+}
+NewWindow = window.open(url,'NewWindow','status=yes,resizable,scrollbars,width=600,height=400');
+NewWindow.focus();
+}
+// This function called when you want to add the document to the selected set and when
+// you want to delete the document from the selected set.In this two
+// functions will be performed based on checkbox checked value.If the checked value is true
+// the document will add to the selected set otherwise the document will be removed from
+// the selected set.
+function selectUnselectRecord(cbno,handle,docid,searchquery,database,sessionid,searchid)
+{
+var now = new Date() ;
+var milli = now.getTime() ;
+var img = new Image() ;
+var cbcheck = document.quicksearchresultsform.cbresult.checked;
+if(cbcheck)
+{
+document.images['image_basket'].src="/engresources/Basket.jsp?select=mark&handle="+handle+"&docid="+docid+"&database="+escape(database)+"&sessionid="+sessionid+"&searchquery="+escape(searchquery)+"&searchid="+searchid+"&timestamp="+ milli;
+} else {
+document.images['image_basket'].src="/engresources/Basket.jsp?select=unmark&handle="+handle+"&docid="+docid+"&database="+escape(database)+"&sessionid="+sessionid+"&searchquery="+escape(searchquery)+"&searchid="+searchid+"&timestamp="+ milli ;
+}
+}
+</script>
+</xsl:comment>
+</head><body bgcolor="#FFFFFF" topmargin="0" marginheight="0" marginwidth="0"><table border="0" width="99%" cellspacing="0" cellpadding="0"><tr><td valign="top"><table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><a target="_top" href="/controller/servlet/Controller?CID=home"><img src="/engresources/images/ev2logo5.gif" border="0"></a></td></tr></table></td><td valign="middle" align="right" target="_top"><a class="DecLink" target="_top" href="/controller/servlet/Controller?CID=viewCompleteSearchHistory&amp;COUNT=58&amp;SEARCHID=1aecc3a10efd2bba7fM32aeprod1data1&amp;database=49155&amp;SEARCHTYPE=Quick&amp;searchResultsFormat=quickSearchCitationFormat">Search History</a><a class="SmBlackText">&nbsp; - &nbsp;</a><a class="DecLink" target="_top" href="/controller/servlet/Controller?CID=citationSelectedSet&amp;SEARCHID=1aecc3a10efd2bba7fM32aeprod1data1&amp;COUNT=58&amp;SEARCHTYPE=Quick&amp;DATABASETYPE=49155&amp;DATABASEID=">Selected Records</a><a class="SmBlackText">&nbsp; - &nbsp;</a><a class="DecLink" target="_top" HREF="/controller/servlet/Controller?CID=myprofile&amp;searchid=1aecc3a10efd2bba7fM32aeprod1data1&amp;searchtype=Quick&amp;count=58&amp;database=49155">My Profile</a><a class="SmBlackText">&nbsp; - &nbsp;</a><a class="DecLink" target="_top" href="/controller/servlet/Controller?CID=personalLoginForm&amp;searchid=1aecc3a10efd2bba7fM32aeprod1data1&amp;searchtype=Quick&amp;count=58&amp;displaylogin=true&amp;database=49155&amp;nexturl=CID%3DviewSavedSearches%26database%3D49155%26show%3Dalerts">My Alerts</a></td><td valign="middle" align="right"><a target="_top" href="/controller/servlet/Controller?CID=endSession&amp;SYSTEM_LOGOUT=true"><img src="/engresources/images/endsession.gif" border="0" alt="End Session"></a></td></tr></table><center><center><table border="0" width="99%" cellspacing="0" cellpadding="0"><tr><td valign="top" width="1" bgcolor="#FFFFFF"><img src="/engresources/images/s.gif" border="0" width="1"></td><td valign="top" width="100%"><img src="/engresources/images/s.gif" border="0"></td><td valign="bottom" width="2"><img src="/engresources/images/s.gif" width="2" border="0"></td><td valign="bottom" align="right"><a TARGET="_self" href="/controller/servlet/Controller?CID=easySearch&amp;database=49155"><img src="/engresources/images/simple_b.gif" border="0" alt="Easy Search"></a></td><td valign="bottom" width="2"><img src="/engresources/images/s.gif" width="2" border="0"></td><td valign="bottom" align="right"><a TARGET="_self" href="/controller/servlet/Controller?CID=quickSearch&amp;database=49155"><img src="/engresources/images/advanced_g.gif" border="0" alt="Quick Search"></a></td><td valign="bottom" width="2"><img src="/engresources/images/s.gif" width="2" border="0"></td><td valign="bottom" align="right"><a TARGET="_self" href="/controller/servlet/Controller?CID=expertSearch&amp;database=49155"><img src="/engresources/images/expert_b.gif" border="0" alt="Expert Search"></a></td><td valign="bottom" width="2"><img src="/engresources/images/s.gif" width="2" border="0"></td><td valign="bottom" align="right"><a TARGET="_self" href="/controller/servlet/Controller?CID=thesHome&amp;database=49155"><img src="/engresources/images/thes_b.gif" border="0" alt="Thesaurus"></a></td><td valign="bottom" width="2"><img src="/engresources/images/s.gif" width="2" border="0"></td><td valign="bottom" align="right"><a TARGET="_self" href="/controller/servlet/Controller?CID=keyWordSearch"><img src="/engresources/images/ebook_b.gif" border="0" alt="eBook Search"></a></td><td valign="bottom" width="2"><img src="/engresources/images/s.gif" width="2" border="0"></td><td valign="bottom" align="right"><a TARGET="_self" href="/controller/servlet/Controller?CID=referenceServices&amp;database=49155"><img src="/engresources/images/ask_b.gif" border="0" alt="Ask an Expert"></a></td><td valign="bottom" width="2"><img src="/engresources/images/s.gif" width="2" border="0"></td><td valign="bottom" align="right"><a TARGET="_self" href="/controller/servlet/Controller?CID=help&amp;database=49155"><img src="/engresources/images/help_b.gif" border="0" alt="Help"></a></td></tr></table></center><center xmlns:html="http://www.w3.org/TR/REC-html40"><table border="0" width="99%" cellspacing="0" cellpadding="0" bgcolor="#C3C8D1"><tr><td align="left" valign="middle" height="24"><img width="8" height="1" src="/engresources/images/s.gif" border="0"><a href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;SEARCHID=1aecc3a10efd2bba7fM32aeprod1data1&amp;COUNT=51&amp;database=49155"><img height="16" src="/engresources/images/sr.gif" border="0"></a><img width="8" height="1" src="/engresources/images/s.gif" border="0"><a href="/controller/servlet/Controller?CID=quickSearch&amp;database=49155"><img height="16" src="/engresources/images/ns.gif" border="0"></a></td><td align="right" valign="middle" height="24"><a href="/controller/servlet/Controller?CID=quickSearchAbstractFormat&amp;SEARCHID=1aecc3a10efd2bba7fM32aeprod1data1&amp;navigator=PREV&amp;DOCINDEX=57&amp;PAGEINDEX=51&amp;database=49155&amp;format=quickSearchAbstractFormat"><img src="/engresources/images/pp.gif" border="0"></a><img width="8" height="1" src="/engresources/images/s.gif" border="0"><a href="/controller/servlet/Controller?CID=quickSearchAbstractFormat&amp;SEARCHID=1aecc3a10efd2bba7fM32aeprod1data1&amp;navigator=NEXT&amp;DOCINDEX=59&amp;PAGEINDEX=51&amp;database=49155&amp;format=quickSearchAbstractFormat"><img src="/engresources/images/np.gif" border="0"></a><img width="8" height="1" src="/engresources/images/s.gif" border="0"></td></tr></table></center><table border="0" width="99%" cellspacing="0" cellpadding="0"><tr><td valign="top"><center xmlns:ti="java:org.ei.query.base.HitHighlightFinisher"><table border="0" cellspacing="0" cellpadding="0" width="99%"><tr><td valign="top" height="10" colspan="2"><img src="/engresources/images/s.gif" border="0" height="10"></td></tr><tr><td valign="top"><table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td valign="top"><a class="BrownText">Abstract</a><A CLASS="MedBlackText">&nbsp; - &nbsp;</A><a class="LgBlueLink" href="/controller/servlet/Controller?CID=quickSearchDetailedFormat&amp;SEARCHID=1aecc3a10efd2bba7fM32aeprod1data1&amp;DOCINDEX=58&amp;PAGEINDEX=51&amp;database=49155&amp;format=quickSearchDetailedFormat">Detailed</a><a href="" onclick="window.open('/controller/servlet/Controller?CID=FullTextLink&amp;docID=cpx_ed465f3e8c3999aM769219255120119','newwindow','width=500,height=500,toolbar=no,location=no,scrollbars,resizable');return false"><img src="/engresources/images/avtop.gif" border="0" align="absbottom"></a></td></tr></table></td><td valign="top" align="right"><a class="MedBlueLink" href="#" onClick="javascript:window.open('/controller/servlet/Controller?CID=openBlog&amp;MID=cpx_ed465f3e8c3999aM769219255120119&amp;DATABASE=cpx&amp;TITLE=A+note+on+learning+automata-based+schemes+for+adaptation+of+BP+parameters')"><img src="/engresources/images/blog.gif" border="0"></a>&nbsp; &nbsp;
+<a href="javascript: emailFormat('1_38311810efd20a9bdM16aeses3','Quick','1aecc3a10efd2bba7fM32aeprod1data1','49155','cpx');void('');"><img src="/engresources/images/em.gif" border="0"></a>&nbsp; &nbsp;
+<a href="javascript:printFormat('1_38311810efd20a9bdM16aeses3','Quick','1aecc3a10efd2bba7fM32aeprod1data1','49155','cpx')"><img src="/engresources/images/pr.gif" border="0"></a>&nbsp; &nbsp;
+<a href="javascript:downloadFormat('1_38311810efd20a9bdM16aeses3','Quick','1aecc3a10efd2bba7fM32aeprod1data1','49155','cpx')"><img src="/engresources/images/dw.gif" border="0"></a>&nbsp; &nbsp;
+<a href="/controller/servlet/Controller?EISESSION=1_38311810efd20a9bdM16aeses3&amp;CID=personalLoginForm&amp;searchid=1aecc3a10efd2bba7fM32aeprod1data1&amp;count=51&amp;searchtype=Quick&amp;displaylogin=true&amp;database=49155&amp;nexturl=CID%3DviewSavedFolders%26docid%3Dcpx_ed465f3e8c3999aM769219255120119%26database%3D49155&amp;backurl=CID%3DquickSearchAbstractFormat%26SEARCHID%3D1aecc3a10efd2bba7fM32aeprod1data1%26DOCINDEX%3D58%26PAGEINDEX%3D51%26database%3D49155%26format%3DquickSearchAbstractFormat"><img src="/engresources/images/sv.gif" border="0"></a></td></tr><tr><td valign="top" colspan="2"><img src="/engresources/images/s.gif" border="0" height="10"></td></tr></table></center><table border="0" width="99%" cellspacing="0" cellpadding="0"><FORM name="quicksearchresultsform"><input type="hidden" name="HANDLE" value="58"><input type="hidden" name="DOC-ID" value="cpx_ed465f3e8c3999aM769219255120119"><tr><td valign="top" colspan="5"><a CLASS="SmBlueText">Record 58 from Compendex for: ((meybodi) WN All fields)</a><a CLASS="SmBlueText">, 1790-2007</a></td></tr><tr><td valign="top" colspan="5" height="10"><img src="/engresources/images/spacer.gif" border="0" height="10"></td></tr><tr><td valign="top" colspan="5"><a CLASS="SmBlackText">Check record to add to Selected Records</a></td></tr><tr><td valign="top" colspan="5" height="6"><img src="/engresources/images/spacer.gif" border="0" height="6"></td></tr><tr><td valign="top" align="right"><input type="checkbox" name="cbresult" onClick="selectUnselectRecord( 1,58,'cpx_ed465f3e8c3999aM769219255120119','%28%28meybodi%29+WN+All+fields%29','cpx','1_38311810efd20a9bdM16aeses3','1aecc3a10efd2bba7fM32aeprod1data1')"></td><td valign="top" width="3"><img src="/engresources/images/spacer.gif" border="0" width="3" name="image_basket"></td><td valign="top"><a CLASS="MedBlackText">58.</a></td><td valign="top" width="4"><img src="/engresources/images/spacer.gif" border="0" width="4"></td><td valign="top" width="100%" align="left"><a CLASS="MedBlackText"><b>A note on learning automata-based schemes for adaptation of BP parameters</b></a><br><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Meybodi%2C+M.R.}&amp;section1=AU&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Meybodi, M.R.</A><span CLASS="SmBlackText"> (Soft Computing Laboratory, Computer Engineering Department, Amirkabir University of Technology)</span><A CLASS="SmBlackText">;</A> <A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Beigy%2C+H.}&amp;section1=AU&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Beigy, H.</A> <a CLASS="SmBlackText"><b>Source: </b><i>Neurocomputing</i>, v 48, October, 2002, p 957-974<br><b>ISSN:</b> 0925-2312 <b>CODEN:</b> NRCGEO <br><b>Publisher:</b> Elsevier Science B.V.</a>
+<span CLASS="MedBlackText"><a CLASS="MedBlackText"><br><br><b>Abstract: </b> In this paper, we study the ability of learning automata-based schemes in escaping from local minima when standard backpropagation (BP) fails to find the global minima. It is demonstrated through simulation that learning automata-based schemes compared to other schemes such as SAB, Super SAB, Fuzzy BP, adaptive steepness method, and variable learning rate method have a higher ability to escape from local minima. &copy; 2002 Elsevier Science B.V. All rights reserved.</a></span><a CLASS="MedBlackText"> (31 refs.)</a>
+<a CLASS="MedBlackText"><br><br><b>Ei controlled terms: </b></a><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Automata+theory}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr"><b>Automata theory</b></A><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Learning+systems}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Learning systems</A><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Neural+networks}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Neural networks</A><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Backpropagation}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Backpropagation</A><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={Computer+simulation}&amp;section1=CV&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">Computer simulation</A><a CLASS="MedBlackText"><br><br><b>Classification Code: &nbsp;&nbsp;</b></a><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={721.1}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">721.1</A><a CLASS="MedBlackText"> Computer Theory, Includes Formal Logic, Automata Theory, Switching Theory, Programming Theory</a><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={723.4}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">723.4</A><a CLASS="MedBlackText"> Artificial Intelligence</a><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="SpLink" href="/controller/servlet/Controller?CID=quickSearchCitationFormat&amp;searchWord1={723.5}&amp;section1=CL&amp;database=49155&amp;yearselect=yearrange&amp;sort=yr">723.5</A><a CLASS="MedBlackText"> Computer Applications</a><BR><br><a CLASS="SmBlackText"><b>Database:</b> Compendex</a><P></P><script language="JavaScript" type="text/javascript" src="/engresources/js/wz_tooltip.js"></script></td></tr><tr><td valign="top" colspan="4" height="15"><img src="/engresources/images/spacer.gif" border="0"></td><td valign="top" height="15" bgcolor="#C3C8D1"><a CLASS="MedBlackText"><b>&nbsp; Full-text and Local Holdings Links</b></a></td></tr><tr><td valign="top" colspan="5" height="4"><img src="/engresources/images/spacer.gif" border="0" height="4"></td></tr><tr><td valign="top" colspan="4" width="3"><img src="/engresources/images/spacer.gif" border="0" width="3"></td><td valign="bottom" align="left"></td></tr><tr><td valign="bottom" colspan="4" height="30"><img src="/engresources/images/spacer.gif" border="0" height="30"></td><td valign="middle" align="left"><a href="" onclick="window.open('/controller/servlet/Controller?CID=FullTextLink&amp;docID=cpx_ed465f3e8c3999aM769219255120119','newwindow','width=500,height=500,toolbar=no,location=no,scrollbars,resizable');return false"><img src="/engresources/images/av.gif" border="0"></a></td></tr></FORM></table></td></tr></table></center><BR><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="0" BORDER="0"><TR><TD><CENTER><A CLASS="MedBlueLink" TARGET="_self" HREF="/controller/servlet/Controller?CID=aboutEI&amp;database=49155">About Ei</A><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="MedBlueLink" TARGET="_self" HREF="/controller/servlet/Controller?CID=aboutEV&amp;database=49155">About Engineering Village</A><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="MedBlueLink" TARGET="_self" HREF="/controller/servlet/Controller?CID=feedback&amp;database=49155">Feedback</A><A CLASS="SmBlackText">&nbsp; - &nbsp;</A><A CLASS="MedBlueLink" TARGET="_self" HREF="/controller/servlet/Controller?CID=privacyPolicy&amp;database=49155">Privacy Policy</A><br><A CLASS="SmBlackText">&copy; 2006 Elsevier Inc. All rights reserved.</A></CENTER></TD></TR></TABLE><br></body></html>
+<!-- Transform Time:28 -->
+

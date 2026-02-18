@@ -1,0 +1,39 @@
+A:hover {
+	COLOR: rgb(0,0,0); TEXT-DECORATION: none
+}
+A:link {
+	COLOR: rgb(0,0,255)
+}
+P {
+	FONT-SIZE: 11pt; COLOR: rgb(0,0,0); FONT-FAMILY: Arial
+}
+TD.head {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: rgb(0,0,0); FONT-FAMILY: Arial
+}
+TH.head {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: rgb(0,0,0); FONT-FAMILY: Arial
+}
+TD.item {
+	FONT-SIZE: 10pt; COLOR: rgb(0,0,0); FONT-FAMILY: Arial
+}
+H1 {
+	FONT-SIZE: 12pt; COLOR: rgb(52,99,75); FONT-FAMILY: Arial
+}
+H2 {
+	FONT-SIZE: 12pt; COLOR: rgb(106,111,79); FONT-FAMILY: Arial
+}
+H3 {
+	PADDING-RIGHT: 8pt; PADDING-LEFT: 8pt; FONT-SIZE: 16pt; PADDING-BOTTOM: 8pt; MARGIN: 8pt; COLOR: rgb(0,0,0); PADDING-TOP: 8pt; FONT-FAMILY: Arial
+}
+P.namo-list {
+	FONT-SIZE: 12pt; COLOR: rgb(61,135,120); FONT-FAMILY: Arial
+}
+P.namo-sublist {
+	FONT-SIZE: 10pt; COLOR: rgb(102,128,0); FONT-FAMILY: Arial
+}
+.field_title {
+	FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.field_titlereq {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
